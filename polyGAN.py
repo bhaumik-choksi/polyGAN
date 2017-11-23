@@ -14,18 +14,20 @@ import math
 import cv2
 import keras.backend as K
 
+
+# Author: Bhaumik D Choksi
 # IMPORTANT!
 # Change these parameters to match the dimensions of your images
-input_dims = 20  # Number of random inputs per generated image.
+input_dims = 200  # Number of random inputs per generated image.
 
 # Input image must have the same width and height.
 # Enter the length of the image in pixels here. Must be a multiple of 4.
 # Enter 28 for mnist and 32 for cifar
-img_side = 36
+img_side = 28
 
-n_color_channels = 1  # Number of color channel - 3 of colored images (like cifar) and 1 for grayscale (like mnist).
-batch_size = 36  # Number of images per batch.
-epochs = 1000  # Number of training epochs.
+n_color_channels = 1  # Number of color channels: 3 for colored images (like cifar) and 1 for grayscale (like mnist).
+batch_size = 20  # Number of images per batch.
+epochs = 2000  # Number of training epochs.
 
 
 def load_mnist(subsample=300):
@@ -40,7 +42,7 @@ def load_cifar(subsample=300):
     return x[:subsample]
 
 
-def load_from_folder(folder_name="images"):
+def load_from_folder(folder_name="images", subsample=10000):
     img_names = os.listdir(folder_name)
     x = []
     for img_name in img_names:
@@ -50,7 +52,8 @@ def load_from_folder(folder_name="images"):
     x = np.asarray(x)
     x = x.reshape(x.shape[0],x.shape[1],x.shape[2],1)
     print(x.shape)
-    return x
+    # Author: Bhaumik D Choksi
+    return x[:subsample]
 
 
 def generator():
@@ -115,7 +118,7 @@ def train(training_images, batch_size=16, epochs=10, display_window=2):
     d = discriminator()
     g = generator()
     gan = GAN(g, d)
-    d_optim = SGD()
+    d_optim = SGD()    # TODO: Try new optimizers. SGD is kinda shitty but fast.
     g_optim = SGD()
     gan.compile(loss="binary_crossentropy", optimizer=g_optim)
     d.trainable = True
@@ -153,10 +156,13 @@ def train(training_images, batch_size=16, epochs=10, display_window=2):
             d.trainable = False
             g_loss = gan.train_on_batch(noise, [1] * batch_size)
             d.trainable = True
+
+            # Saving images at the given interval
             if epoch % display_window == 0:
                 cv2.imwrite('outputs/image' + str(epoch) + ".png", image)
 
 
+# Author: Bhaumik D Choksi
 # Load appropriate input data
-input_data = load_from_folder(folder_name="images")
+input_data = load_from_folder(subsample=200)
 train(training_images= input_data,batch_size=batch_size, epochs=epochs, display_window=10)
