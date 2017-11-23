@@ -1,6 +1,6 @@
 # polyGAN 
 
-polyGAN is a Generative Adverserial Netowork(GAN) based on the DC-GAN architecture. It is implemented using Keras in Python. polyGAN is capable of training on and generating color images as well as grayscale images of any given resolution. 
+polyGAN is a Generative Adversarial Network(GAN) based on the DC-GAN architecture. It is implemented using Keras in Python. polyGAN is capable of training on and generating color images as well as grayscale images of any given resolution. 
 
 It is implemented in Python using the Keras library and tested on MNIST, CIFAR10 and Chars74K image datasets.
 
