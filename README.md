@@ -5,9 +5,13 @@ polyGAN is a Generative Adverserial Netowork(GAN) based on the DC-GAN architectu
 It is implemented in Python using the Keras library and tested on MNIST, CIFAR10 and Chars74K image datasets.
 
 
-## DC-GAN Architecture
+## Architecture
 
+### GAN
 ![img](http://www.timzhangyuxuan.com/static/images/project_DCGAN/structure.png)
+
+### Deep-Convolutional GAN (DC-GAN)
+![img](http://gluon.mxnet.io/_images/dcgan.png)
 
 
 ## Results
