@@ -28,7 +28,7 @@ It is implemented in Python using the Keras library and tested on MNIST, CIFAR10
 - Using alphabet images from the Chars74K dataset
 
 
-![img](https://github.com/bhaumik-choksi/polyGAN/blob/master/outputs/imagenet_wristwatch/image910.png?raw=true)
+![img](https://github.com/bhaumik-choksi/polyGAN/blob/master/outputs/chars74k/image960.png)
 
 
 ## References
@@ -41,4 +41,3 @@ It is implemented in Python using the Keras library and tested on MNIST, CIFAR10
 - Tensorflow
 - Keras
 - OpenCV
-- 
